@@ -186,42 +186,42 @@ cd $LOCALBUILDDIR
 
 if [ -f "$LOCALDESTDIR/lib/libfreetype.a" ]; then
 	echo -------------------------------------------------
-	echo "freetype-2.5.4 is already compiled"
+	echo "freetype-2.5.5 is already compiled"
 	echo -------------------------------------------------
 	else 
 		echo -ne "\033]0;compile freetype $bits\007"
-		rm -rf freetype-2.5.4
-		wget --tries=20 --retry-connrefused --waitretry=2 -c http://downloads.sourceforge.net/project/freetype/freetype2/2.5.4/freetype-2.5.4.tar.bz2
-		tar xf freetype-2.5.4.tar.bz2
-		rm freetype-2.5.4.tar.bz2
-		cd freetype-2.5.4
+		rm -rf freetype-2.5.5
+		wget --tries=20 --retry-connrefused --waitretry=2 -c http://downloads.sourceforge.net/project/freetype/freetype2/2.5.5/freetype-2.5.5.tar.bz2
+		tar xf freetype-2.5.5.tar.bz2
+		rm freetype-2.5.5.tar.bz2
+		cd freetype-2.5.5
 		./configure --build=$targetBuild --host=$targetHost --prefix=$LOCALDESTDIR --bindir=$LOCALDESTDIR/bin-global --disable-shared --with-harfbuzz=no
 		make -j $cpuCount
 		make install
 		
-		do_checkIfExist freetype-2.5.4 libfreetype.a
+		do_checkIfExist freetype-2.5.5 libfreetype.a
 fi
 
 cd $LOCALBUILDDIR
 
 if [ -f "$LOCALDESTDIR/lib/libfontconfig.a" ]; then
 	echo -------------------------------------------------
-	echo "fontconfig-2.11.1 is already compiled"
+	echo "fontconfig-2.11.91 is already compiled"
 	echo -------------------------------------------------
 	else 
 		echo -ne "\033]0;compile fontconfig $bits\007"
-		rm -rf fontconfig-2.11.1
-		wget --tries=20 --retry-connrefused --waitretry=2 -c http://www.freedesktop.org/software/fontconfig/release/fontconfig-2.11.1.tar.gz
-		tar xf fontconfig-2.11.1.tar.gz
-		rm fontconfig-2.11.1.tar.gz
-		cd fontconfig-2.11.1
+		rm -rf fontconfig-2.11.91
+		wget --tries=20 --retry-connrefused --waitretry=2 -c http://www.freedesktop.org/software/fontconfig/release/fontconfig-2.11.91.tar.gz
+		tar xf fontconfig-2.11.91.tar.gz
+		rm fontconfig-2.11.91.tar.gz
+		cd fontconfig-2.11.91
 		./configure --build=$targetBuild --host=$targetHost --prefix=$LOCALDESTDIR --bindir=$LOCALDESTDIR/bin-global --enable-shared=no
 		sed -i 's/-L${libdir} -lfontconfig[^l]*$/-L${libdir} -lfontconfig -lfreetype -lexpat/' fontconfig.pc
 		
 		make -j $cpuCount
 		make install
 		
-		do_checkIfExist fontconfig-2.11.1 libfontconfig.a
+		do_checkIfExist fontconfig-2.11.91 libfontconfig.a
 fi
 
 cd $LOCALBUILDDIR
@@ -394,44 +394,44 @@ cd $LOCALBUILDDIR
 
 if [ -f "$LOCALDESTDIR/lib/libxml2.a" ]; then
 	echo -------------------------------------------------
-	echo "libxml2-2.9.1 is already compiled"
+	echo "libxml2-2.9.2 is already compiled"
 	echo -------------------------------------------------
 	else 
 		echo -ne "\033]0;compile libxml2 $bits\007"
-		rm -rf libxml2-2.9.1
-		wget --tries=20 --retry-connrefused --waitretry=2 -c ftp://xmlsoft.org/libxml2/libxml2-2.9.1.tar.gz
-		tar xf libxml2-2.9.1.tar.gz
-		rm libxml2-2.9.1.tar.gz
-		cd libxml2-2.9.1
+		rm -rf libxml2-2.9.2
+		wget --tries=20 --retry-connrefused --waitretry=2 -c ftp://xmlsoft.org/libxml2/libxml2-2.9.2.tar.gz
+		tar xf libxml2-2.9.2.tar.gz
+		rm libxml2-2.9.2.tar.gz
+		cd libxml2-2.9.2
 		
 		./configure --build=$targetBuild --host=$targetHost --prefix=$LOCALDESTDIR --bindir=$LOCALDESTDIR/bin-global --disable-shared --enable-static
 		
 		make -j $cpuCount
 		make install
 		
-		do_checkIfExist libxml2-2.9.1 libxml2.a
+		do_checkIfExist libxml2-2.9.2 libxml2.a
 fi
 
 cd $LOCALBUILDDIR
 
 if [ -f "$LOCALDESTDIR/lib/libmagic.a" ]; then
 	echo -------------------------------------------------
-	echo "file-5.21[libmagic] is already compiled"
+	echo "file-5.22[libmagic] is already compiled"
 	echo -------------------------------------------------
 	else 
 		echo -ne "\033]0;compile file $bits\007"
-		rm -rf file-5.21
-		wget --tries=20 --retry-connrefused --waitretry=2 -c ftp://ftp.astron.com/pub/file/file-5.21.tar.gz
-		tar xf file-5.21.tar.gz
-		rm file-5.21.tar.gz
-		cd file-5.21
+		rm -rf file-5.22
+		wget --tries=20 --retry-connrefused --waitretry=2 -c ftp://ftp.astron.com/pub/file/file-5.22.tar.gz
+		tar xf file-5.22.tar.gz
+		rm file-5.22.tar.gz
+		cd file-5.22
 		
 		./configure --build=$targetBuild --host=$targetHost --prefix=$LOCALDESTDIR --bindir=$LOCALDESTDIR/bin-global --enable-static=yes --enable-shared=no CPPFLAGS='-DPCRE_STATIC' LIBS='-lpcre -lshlwapi -lz'
 
 		make CPPFLAGS='-D_REGEX_RE_COMP' -j $cpuCount
 		make install
 		
-		do_checkIfExist file-5.21 libmagic.a
+		do_checkIfExist file-5.22 libmagic.a
 fi
 
 cd $LOCALBUILDDIR
@@ -585,22 +585,22 @@ cd $LOCALBUILDDIR
 
 if [ -f "$LOCALDESTDIR/lib/libspeex.a" ]; then
 	echo -------------------------------------------------
-	echo "speex-1.2rc1 is already compiled"
+	echo "speex-1.2rc2 is already compiled"
 	echo -------------------------------------------------
 	else 
 		echo -ne "\033]0;compile speex $bits\007"
-		rm -rf speex-1.2rc1
-		wget --tries=20 --retry-connrefused --waitretry=2 -c http://downloads.xiph.org/releases/speex/speex-1.2rc1.tar.gz
-		tar xf speex-1.2rc1.tar.gz
-		rm speex-1.2rc1.tar.gz
-		cd speex-1.2rc1
+		rm -rf speex-1.2rc2
+		wget --tries=20 --retry-connrefused --waitretry=2 -c http://downloads.xiph.org/releases/speex/speex-1.2rc2.tar.gz
+		tar xf speex-1.2rc2.tar.gz
+		rm speex-1.2rc2.tar.gz
+		cd speex-1.2rc2
 		
 		./configure --build=$targetBuild --host=$targetHost --prefix=$LOCALDESTDIR --bindir=$LOCALDESTDIR/bin-audio --enable-shared=no 
 		
 		make -j $cpuCount
 		make install
 		
-		do_checkIfExist speex-1.2rc1 libspeex.a
+		do_checkIfExist speex-1.2rc2 libspeex.a
 fi
 
 cd $LOCALBUILDDIR
@@ -611,7 +611,7 @@ if [ -f "$LOCALDESTDIR/bin-audio/flac.exe" ]; then
     echo -------------------------------------------------
     else
         echo -ne "\033]0;compile flac $bits\007"
-        rm -rf flac-1.3.0
+        rm -rf flac-1.3.1
         wget --tries=20 --retry-connrefused --waitretry=2 -c http://downloads.xiph.org/releases/flac/flac-1.3.1.tar.xz
         tar xf flac-1.3.1.tar.xz
         rm flac-1.3.1.tar.xz
@@ -700,7 +700,7 @@ if [[ $compile == "true" ]]; then
 		./autogen.sh
 	else 
 		make uninstall
-		make clean
+		make distclean
 	fi
 
 	./configure --build=$targetBuild --host=$targetHost --prefix=$LOCALDESTDIR --enable-shared=no
@@ -891,15 +891,14 @@ cd $LOCALBUILDDIR
 do_git "git://git.code.sf.net/p/sox/code" sox-git
 
 if [[ $compile == "true" ]]; then
-	sed -i 's|found_libgsm=yes|found_libgsm=no|g' configure.ac
-	
 	if [[ ! -f ./configure ]]; then
 		autoreconf -i
 	else
 		make uninstall
-		make clean
+		make distclean
 	fi
 	
+	sed -i 's|found_libgsm=yes|found_libgsm=no|g' configure
 	./configure --build=$targetBuild --host=$targetHost --prefix=$LOCALDESTDIR --bindir=$LOCALDESTDIR/bin-audio --enable-shared=no CPPFLAGS='-DPCRE_STATIC' LIBS='-lpcre -lshlwapi -lz -lgnurx' SNDFILE_LIBS="-lsndfile -lFLAC -lvorbis -lvorbisenc -logg"
 	
 	make -j $cpuCount
@@ -996,7 +995,7 @@ if [[ $compile == "true" ]]; then
 		autoreconf -fiv
 	else 
 		make uninstall
-		make clean
+		make distclean
 	fi
 	
 	./configure --build=$targetBuild --host=$targetHost --prefix=$LOCALDESTDIR --bindir=$LOCALDESTDIR/bin-video --disable-shared --disable-apidoc
@@ -1022,7 +1021,7 @@ if [[ $compile == "true" ]]; then
 		autoreconf -fiv
 	else 
 		make uninstall
-		make clean
+		make distclean
 	fi
 		
 		./configure --build=$targetBuild --host=$targetHost --prefix=$LOCALDESTDIR --bindir=$LOCALDESTDIR/bin-video --disable-shared
@@ -1048,7 +1047,7 @@ if [[ ! -f "configure" ]]; then
 		autoreconf -fiv
 	else 
 		make uninstall
-		make clean
+		make distclean
 	fi
 
 	./configure --build=$targetBuild --host=$targetHost --prefix=$LOCALDESTDIR --bindir=$LOCALDESTDIR/bin-video --disable-shared --enable-static --disable-examples --disable-doxygen-doc --disable-doxygen-dot LIBXML2_LIBS="-L$LOCALDESTDIR/lib -lxml2" LIBXML2_CFLAGS="-I$LOCALDESTDIR/include/libxml2 -DLIBXML_STATIC"
@@ -1085,7 +1084,7 @@ fi
 if [[ $compile == "true" ]]; then
 	if [ -f $LOCALDESTDIR/lib/libutvideo.a ]; then
 		make uninstall
-		make clean
+		make distclean
 	fi
 
 	./configure --cross-prefix=$cross --prefix=$LOCALDESTDIR
@@ -1109,7 +1108,7 @@ do_git "https://github.com/libass/libass.git" libass-git
 if [[ $compile == "true" ]]; then
 	if [ -f $LOCALDESTDIR/lib/libass.a ]; then
 		make uninstall
-		make clean
+		make distclean
 	fi
 
 	if [[ ! -f "configure" ]]; then
@@ -1375,10 +1374,10 @@ if [[ $mp4box = "y" ]]; then
 		if [ -f $LOCALDESTDIR/bin-video/MP4Box.exe ]; then
 			rm $LOCALDESTDIR/bin-video/MP4Box.exe
 			make uninstall
-			make clean
+			make distclean
 		fi
 		
-		./configure --build=$targetBuild --host=$targetHost --prefix=$LOCALDESTDIR --static-mp4box --enable-static-bin --extra-libs="-lws2_32 -lwinmm -lz -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64" --use-ffmpeg=no --use-png=no --disable-ssl
+		./configure --build=$targetBuild --host=$targetHost --target-os=MINGW32 --prefix=$LOCALDESTDIR --static-mp4box --enable-static-bin --use-ffmpeg=no --use-png=no --disable-ssl
 		
 		if [[ $bits = "64bit" ]]; then
 			sed -i 's/ -fPIC//g' config.mak
@@ -1456,7 +1455,7 @@ if [[ $compile == "true" ]]; then
 		arch='x86_64'
 	fi
 
-	CPPFLAGS='-D_POSIX' ./configure --arch=$arch --target-os=mingw32 --prefix=$LOCALDESTDIR --disable-debug --disable-shared --disable-doc --enable-runtime-cpudetect --disable-programs --disable-devices --disable-filters --disable-encoders --disable-muxers
+	CPPFLAGS='-D_POSIX' ./configure --arch=$arch --target-os=mingw32 --prefix=$LOCALDESTDIR --disable-debug --disable-shared --disable-doc --enable-runtime-cpudetect --disable-programs --disable-devices --disable-encoders --disable-muxers
 
 	make -j $cpuCount
 	make install
@@ -1485,7 +1484,7 @@ if [[ $compile == "true" ]]; then
 	make -j $cpuCount
 	
 	cp x264.exe $LOCALDESTDIR/bin-video/x264-10bit.exe
-	make clean
+	make distclean
 
 	./configure --host=$targetHost --prefix=$LOCALDESTDIR --bindir=$LOCALDESTDIR/bin-video --enable-static --enable-win32thread
 
@@ -1721,7 +1720,7 @@ if [[ $mplayer = "y" ]]; then
 	if [[ $compile == "true" ]] || [[ "$oldHead" != "$newHead"  ]] || [[ $buildFFmpeg == "true" ]]; then
 		if [ -f $LOCALDESTDIR/bin-video/mplayer.exe ]; then
 			make uninstall
-			make clean
+			make distclean
 		fi
 		
 		if ! test -e ffmpeg ; then
