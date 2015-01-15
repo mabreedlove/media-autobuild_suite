@@ -206,22 +206,22 @@ cd $LOCALBUILDDIR
 
 if [ -f "$LOCALDESTDIR/lib/libfontconfig.a" ]; then
 	echo -------------------------------------------------
-	echo "fontconfig-2.11.91 is already compiled"
+	echo "fontconfig-2.11.92 is already compiled"
 	echo -------------------------------------------------
 	else 
 		echo -ne "\033]0;compile fontconfig $bits\007"
-		rm -rf fontconfig-2.11.91
-		wget --tries=20 --retry-connrefused --waitretry=2 -c http://www.freedesktop.org/software/fontconfig/release/fontconfig-2.11.91.tar.gz
-		tar xf fontconfig-2.11.91.tar.gz
-		rm fontconfig-2.11.91.tar.gz
-		cd fontconfig-2.11.91
+		rm -rf fontconfig-2.11.92
+		wget --tries=20 --retry-connrefused --waitretry=2 -c http://www.freedesktop.org/software/fontconfig/release/fontconfig-2.11.92.tar.gz
+		tar xf fontconfig-2.11.92.tar.gz
+		rm fontconfig-2.11.92.tar.gz
+		cd fontconfig-2.11.92
 		./configure --build=$targetBuild --host=$targetHost --prefix=$LOCALDESTDIR --bindir=$LOCALDESTDIR/bin-global --enable-shared=no
 		sed -i 's/-L${libdir} -lfontconfig[^l]*$/-L${libdir} -lfontconfig -lfreetype -lexpat/' fontconfig.pc
 		
 		make -j $cpuCount
 		make install
 		
-		do_checkIfExist fontconfig-2.11.91 libfontconfig.a
+		do_checkIfExist fontconfig-2.11.92 libfontconfig.a
 fi
 
 cd $LOCALBUILDDIR
@@ -1455,7 +1455,7 @@ if [[ $compile == "true" ]]; then
 		arch='x86_64'
 	fi
 
-	CPPFLAGS='-D_POSIX' ./configure --arch=$arch --target-os=mingw32 --prefix=$LOCALDESTDIR --disable-debug --disable-shared --disable-doc --enable-runtime-cpudetect --disable-programs --disable-devices --disable-encoders --disable-muxers
+	CPPFLAGS='-D_POSIX' ./configure --arch=$arch --target-os=mingw32 --prefix=$LOCALDESTDIR --disable-debug --disable-shared --disable-doc --enable-runtime-cpudetect --disable-programs --disable-devices --disable-encoders --disable-muxers --disable-bsfs --disable-swresample --disable-postproc
 
 	make -j $cpuCount
 	make install
